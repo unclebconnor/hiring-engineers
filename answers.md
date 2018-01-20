@@ -12,6 +12,10 @@
   ![Tags Created Successfully](https://github.com/unclebconnor/hiring-engineers/blob/master/images/01_tag-example.png)
   
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+> I don't know why it wasn't obvious at first to rename the "example" file, but once I figured that out the installation was smooth on both hosts, though I'm still running into a sort of annoying issue with permissions on vagrant.  I'm sure I'll figure that out by the time I'm done.
+  
+  ![Postgres Installed Successfully](https://github.com/unclebconnor/hiring-engineers/blob/master/images/02_Postgres-Install.png)
+  
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
