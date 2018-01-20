@@ -17,6 +17,10 @@
   ![Postgres Installed Successfully](https://github.com/unclebconnor/hiring-engineers/blob/master/images/02_Postgres-Install.png)
   
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
+> The environment(s) are starting to make much more sense.  I've only done some basics on python so had to check on some syntax, but otherwise this was fairly straight-forward.
+  
+  ![Agent Check Installed Successfully](https://github.com/unclebconnor/hiring-engineers/blob/master/images/03_agent-check.png)
+  
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 
