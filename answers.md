@@ -22,7 +22,15 @@
   ![Agent Check Installed Successfully](https://github.com/unclebconnor/hiring-engineers/blob/master/images/03_agent-check.png)
   
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
+> On my linux host, I changed this via the yaml file
+  
+  ![Collection Interval Updated](https://github.com/unclebconnor/hiring-engineers/blob/master/images/04_mymetric-interval.png)
+  
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
+> For my osx host, I changed this via the settings page for my_metric.  From what I can tell on the line graph, it's still only showing intervals every 20 seconds so I'm wondering if this field requires special statsd syntax.  I wasn't able to find any clear documentation with an answer to that so I'm going to move on for the moment.  Hopefully I'll be able to circle back after doing some more with data visualization.
+  
+  ![Interval Updated Manually](https://github.com/unclebconnor/hiring-engineers/blob/master/images/05_Challenge-statsd-interval.png)
+  
 
 ## Visualizing Data:
 
