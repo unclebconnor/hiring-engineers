@@ -3,7 +3,7 @@
 ## Notes on setup
 * I was able to install vagrant and the datadog agent with no trouble
 * I confirmed that the agent was reporting by looking at the host map page
-* I also installed an agent in my osx terminal, hoping that I'd get data from two hosts to compare, and because I'm less familiar with the linux vm.  My host map page has changed a few times and at one point I had 3 hexagons, 2 of which represented my macbook.  From this ![help article](https://goo.gl/Zm5rY4) It seems that there are cases where a host might send multiple unique names, which Datadog then aliases separately.  The problem seems to have resolved itself (after a few rounds of uninstalling and reinstalling).
+* I also installed an agent in my osx terminal, hoping that I'd get data from two hosts to compare, and because I'm less familiar with the linux vm.  My host map page has changed a few times and at one point I had 3 hexagons, 2 of which represented my macbook.  From this [help article](https://goo.gl/Zm5rY4) It seems that there are cases where a host might send multiple unique names, which Datadog then aliases separately.  The problem seems to have resolved itself (after a few rounds of uninstalling and reinstalling).
   
 ## Collecting Metrics:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.  
