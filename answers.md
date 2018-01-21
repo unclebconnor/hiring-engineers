@@ -92,7 +92,8 @@ Please configure the monitor’s message so that it will:
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-> The image below shows one of the resulting emails
+> The image below shows one of the resulting emails  
+> *my host.name tag came up with a blank value, which I realize is likely because I set this monitor up for both of my hosts.  In a real scenario, I'd likely be creating this kind of monitor for each host separately so that tag would work.  In a summary monitor like this, it would make more sense to use a general message such as "the system needs your attention", etc.
   
   ![Monitor Alert Email](https://github.com/unclebconnor/hiring-engineers/blob/master/images/09b_alert-email.png)
   
