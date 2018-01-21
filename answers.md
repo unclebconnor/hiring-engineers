@@ -4,7 +4,9 @@
 * I was able to install vagrant and the datadog agent with no trouble
 * I confirmed that the agent was reporting by looking at the host map page
 * I also installed an agent in my osx terminal, hoping that I'd get data from two hosts to compare, and because I'm less familiar with the linux vm.  My host map page has changed a few times and at one point I had 3 hexagons, 2 of which represented my macbook.  From this [help article](https://goo.gl/Zm5rY4) It seems that there are cases where a host might send multiple unique names, which Datadog then aliases separately.  The problem seems to have resolved itself (after a few rounds of uninstalling and reinstalling).
-  
+
+---
+
 ## Collecting Metrics:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.  
 > I was able to successfully add tags on both the osx and linux hosts.  I had a bit of trouble figuring out how to edit text on Vagrant at first (I used vi) but eventually made it work.  There was a significant lag updating the UI from both hosts, but the VM took much longer.  I did a series of restarts for the agents and logged out/in a few times.  I'm not sure if those were necessary or if I just needed to be patient and I could anticipate a client being similarly confused.  I'm curious what the expected or recommended protocol is.  
@@ -30,7 +32,8 @@
 > For my osx host, I changed this via the settings page for my_metric.  From what I can tell on the line graph, it's still only showing intervals every 20 seconds so I'm wondering if this field requires special statsd syntax.  I wasn't able to find any clear documentation with an answer to that so I'm going to move on for the moment.  Hopefully I'll be able to circle back after doing some more with data visualization.
   
   ![Interval Updated Manually](https://github.com/unclebconnor/hiring-engineers/blob/master/images/05_Challenge-statsd-interval.png)
-  
+
+---
 
 ## Visualizing Data:
 
@@ -55,7 +58,20 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
+> I ended up setting the timeframe back to a 5 minute window earlier in the hour because there was nothing displaying in my rollup chart.  I guessed that this had something to do with there not being much data for the hour that I took the screenshot, despite the fact it should just be rolling up the average for the last hour.  I'm curious what values it's actually trying to calculate.  
+> I tried to add an annotation to the heatmap but that function only seemed to work on the line chart.  Adding the annotations on that graph worked fine and I got the automated email from tagging myself.
+  
+Pictured:
+1. "Zoomed in" timeframe for a 5 minute window
+2. Annotations
+  
+  ![Zoomed In Charts](https://github.com/unclebconnor/hiring-engineers/blob/master/images/07_5-minutes.png)
+  ![Annotations](https://github.com/unclebconnor/hiring-engineers/blob/master/images/08_annotations.png)
+  
 * **Bonus Question**: What is the Anomaly graph displaying?
+> The anomaly algorithm decides what is "normal" based on trend data and lets a user know when a host is behaving atypically.  Obviously, my hosts haven't existed long enough to provide meaningful data so "normal" was probabily defined by standard deviation or something like that, and anomalies were values outside of that range.
+
+---
 
 ## Monitoring Data
 
