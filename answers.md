@@ -82,21 +82,32 @@ Create a new Metric Monitor that watches the average of your custom metric (my_m
 * Warning threshold of 500
 * Alerting threshold of 800
 * And also ensure that it will notify you if there is No Data for this query over the past 10m.
-
+> The image below shows the settings I implemented for this task
+  
+  ![Monitor Alert Settings](https://github.com/unclebconnor/hiring-engineers/blob/master/images/09a_alert-settings.png)  
+  
 Please configure the monitor’s message so that it will:
 
 * Send you an email whenever the monitor triggers.
 * Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-
+> The image below shows one of the resulting emails
+  
+    ![Monitor Alert Email](https://github.com/unclebconnor/hiring-engineers/blob/master/images/09b_alert-email.png)
+  
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
     * One that silences it from 7pm to 9am daily on M-F,
     * And one that silences it all day on Sat-Sun.
     * Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-
-
+> The following two images show:
+> * The alert downtime settings
+> * The resulting email
+  
+  ![Alert Downtime Settings](https://github.com/unclebconnor/hiring-engineers/blob/master/images/09c_alert-downtime-settings.png)
+  ![Alert Downtime Email](https://github.com/unclebconnor/hiring-engineers/blob/master/images/09d_alert-downtime-email.png)
+  
 ## Collecting APM Data:
 
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
