@@ -39,8 +39,17 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-
+> To complete this task, I actually created a timeboard manually from the UI first to get a good sense of what I was trying to make with the script.  After doing that, I stumbled upon the JSON formatted code for my requests so from that point I just took the template from the API docs and modified it to include the 3 graphs and copy/pasted what I already created.  I used Ruby because I've got a little more experience with it than I do python.  I had to install the dogapi gem, ran the script, and then verified that it was successful on my dashboard list.
+  
+  Pictured below:
+  1. The manually created timeboard
+  2. The timeboard created via the API and the script
+  
+  ![Manual Timeboard](https://github.com/unclebconnor/hiring-engineers/blob/master/images/06a_timeboard-manual.png)
+  ![Timeboard from API](https://github.com/unclebconnor/hiring-engineers/blob/master/images/06b_timeboard-from-api.png)
+  
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
+> My script is included in this pr.  [create_timeboard.rb](https://github.com/unclebconnor/hiring-engineers/blob/master/create_timeboard.rb)
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
