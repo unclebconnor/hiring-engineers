@@ -94,7 +94,7 @@ Please configure the monitor’s message so that it will:
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 > The image below shows one of the resulting emails
   
-    ![Monitor Alert Email](https://github.com/unclebconnor/hiring-engineers/blob/master/images/09b_alert-email.png)
+  ![Monitor Alert Email](https://github.com/unclebconnor/hiring-engineers/blob/master/images/09b_alert-email.png)
   
 * **Bonus Question**: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
