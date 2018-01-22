@@ -114,7 +114,8 @@ Please configure the monitor’s message so that it will:
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-> I had a pretty tough time with this exercise, which had more to do with my environment(s) than the difficulty of the task.  In my linux environment, I played with a few different combinations of versions of pip and python, python-dev, etc. and caused some problems for myself a few times by not using sudo.  It turns out most of my issues were permissions, even though my error messages led me in circles for a bit.  I implemented the simple flask app that was given in the exercise, which only produced minimal data as seen in the screenshot below.
+> I had a pretty tough time with this exercise, which had more to do with my environment(s) than the difficulty of the task.  In my linux environment, I played with a few different combinations of versions of pip and python, python-dev, etc. and caused some problems for myself a few times by not using sudo.  It turns out most of my issues were permissions, even though my error messages led me in circles for a bit.  I implemented the simple flask app that was given in the exercise, which only produced minimal data as seen in the screenshot below.  
+  
 >I was also never able to get the Tracer Agent installed on my osx host.  I'm not sure if I didn't understand the syntax or if the directions were simply innacurate but that, I think, is the one piece missing from my ruby implementation.  I updated the github repo with that app to include the initializer.  [Body Map Project](https://github.com/unclebconnor/body_map)
   
   ![Dashboard](https://github.com/unclebconnor/hiring-engineers/blob/master/images/10a_dashboard.png)
@@ -166,5 +167,5 @@ Is there anything creative you would use Datadog for?
 > * It would be interesting from a design perspective to not only see the frequency of pages are clicked on a website (using APM to monitor routes?) but also the sequence and how long it takes a user to get to particular areas of interest.  Creating some kind of map could potentially help design teams evaluate their effectiveness.
 
 ---
-**Thanks for  this experience.  
-**I am grateful for any feedback you're willing to share, answers to questions, etc.
+**Thanks for  this experience!**  
+**I am grateful for any feedback you're willing to share, answers to questions, etc.**
