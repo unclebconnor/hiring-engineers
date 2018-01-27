@@ -82,19 +82,39 @@ instances:
   ![Postgres Installed Successfully](https://github.com/unclebconnor/hiring-engineers/blob/master/images/02_Postgres-Install.png)
   
 * Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
-> The environment(s) are starting to make much more sense.  I've only done some basics on python so had to check on some syntax, but otherwise this was fairly straight-forward.
-  UPDATE: INCLUDE CODE SNIPPET AND PYTHON INSTRUCTIONS
+> I created a very simple check in python.  I added the following snippet in a file **mymetric.py** to **/opt/datadog-agent/etc/checks.d**
+```
+from checks import AgentCheck
+from random import *
+
+class TestCheck(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', randint(0, 1000))
+```
+> I also added the following snippet in a file **mymetric.yaml** to **/opt/datadog-agent/etc/conf.d**
+```
+init_config:
+
+instances:
+    [{}]
+```
+> I also added the same snippets to the corresponding folders on my ubuntu host
   
   ![Agent Check Installed Successfully](https://github.com/unclebconnor/hiring-engineers/blob/master/images/03_agent-check.png)
   
 * Change your check's collection interval so that it only submits the metric once every 45 seconds.
-> On my linux host, I changed this via the yaml file
-  UPDATE: INCLUDE SNIPPET AND SCREENSHOTS OF EACH
+> On my linux host, I changed this via the **mymetric.yaml** file by adding:
+```
+init_config:
+  min_collection_interval: 45
+```
   
   ![Collection Interval Updated](https://github.com/unclebconnor/hiring-engineers/blob/master/images/04_mymetric-interval.png)
   
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
-> For my osx host, I changed this via the settings page for my_metric.  From what I can tell on the line graph, it's still only showing intervals every 20 seconds so I'm wondering if this field requires special statsd syntax.  I wasn't able to find any clear documentation with an answer to that so I'm going to move on for the moment.  Hopefully I'll be able to circle back after doing some more with data visualization.
+> For my osx host, I changed this via the settings page for my_metric...   
+> ...which is a little hidden: host map -> name of db -> show dashboard -> settings(on chart) -> my_metric.  
+>  From what I can tell on the line graph, it's still only showing intervals every 20-30 seconds so I'm wondering if this field requires special statsd syntax.  I wasn't able to find any clear documentation with an answer to that so I'm going to move on for the moment.  
   
   ![Interval Updated Manually](https://github.com/unclebconnor/hiring-engineers/blob/master/images/05_Challenge-statsd-interval.png)
 
@@ -107,8 +127,10 @@ Utilize the Datadog API to create a Timeboard that contains:
 * Your custom metric scoped over your host.
 * Any metric from the Integration on your Database with the anomaly function applied.
 * Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
-> To complete this task, I actually created a timeboard manually from the UI first to get a good sense of what I was trying to make with the script.  After doing that, I stumbled upon the JSON formatted code for my requests so from that point I just took the template from the API docs and modified it to include the 3 graphs and copy/pasted what I already created.  I used Ruby because I've got a little more experience with it than I do python.  I had to install the dogapi gem, ran the script, and then verified that it was successful on my dashboard list.
-  UPDATE:  REWRITE AS DIRECTIONS
+> To complete this task, I did the following:
+> * Created a timeboard manually from the UI first to get a good sense of what I was trying to make with the script
+> * I grabbed the JSON formatted code for my manually created requests, and modified the template from the API docs to include the 3 graphs  
+> * I installed the dogapi gem, ran the script, and then verified that it was successful on my dashboard list
   
   Pictured below:
   1. The manually created timeboard
@@ -119,15 +141,14 @@ Utilize the Datadog API to create a Timeboard that contains:
   
 Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timemboard.
 > My script is included in this pr.  [create_timeboard.rb](https://github.com/unclebconnor/hiring-engineers/blob/master/create_timeboard.rb)
-  UPDATE: SHOW SCREENSHOT
 
 Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
-> I ended up setting the timeframe back to a 5 minute window earlier in the hour because there was nothing displaying in my rollup chart.  I guessed that this had something to do with there not being much data for the hour that I took the screenshot, despite the fact it should just be rolling up the average for the last hour.  I'm curious what values it's actually trying to calculate.  
-> I tried to add an annotation to the heatmap but that function only seemed to work on the line chart.  Adding the annotations on that graph worked fine and I got the automated email from tagging myself.
-  UPDATE: REWRITE AS DIRECTIONS
+> I clicked and dragged on the graph to select a shorter time window.  I ended up setting the timeframe back to a 5 minute window earlier in the hour because there was nothing displaying in my rollup chart.  I assume this had something to do with there not being much data for the hour that I took the screenshot, despite the fact it should just be rolling up the average for the last hour.  I'm curious what values it's actually trying to calculate.  
+> I failed to add an annotation to the heatmap but was able to create one on the line chart    
+> I successfully added the annotations on that graph I got the automated email by tagging myself  
   
 Pictured:
 1. "Zoomed in" timeframe for a 5 minute window
