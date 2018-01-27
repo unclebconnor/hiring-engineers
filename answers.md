@@ -13,7 +13,7 @@ $ DD_API_KEY=<MY_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataD
 $ /usr/local/bin/datadog-agent start // manually starts agent
 ```
 * I confirmed that both agents were reporting by looking at the host map page
-* Strange behavior:  My host map page has changed a few times and at one point I had 3 hexagons, 2 of which represented my macbook.  From this [help article](https://goo.gl/Zm5rY4) It seems that there are cases where a host might send multiple unique names, which Datadog then aliases separately.  The problem seems to have resolved itself, though it's unclear whether this is a result of uninstalling and reinstalling or just time.  
+* Strange behavior:  My host map page has changed a few times and at one point I had 3 hexagons, 2 of which represented my macbook.  From this [article](https://goo.gl/Zm5rY4) It seems that there are cases where a host might send multiple unique names, which Datadog then aliases separately.  The problem seems to have resolved itself, though it's unclear whether this is a result of uninstalling and reinstalling or just time.  
 
 ## Useful Commands for the given tasks
 Vagrant/Ubuntu Commands:
@@ -43,8 +43,8 @@ Agent Commands
 $ /usr/local/bin/datadog-agent <option> (options: start, stop, restart, status, info)
 
 Paths
-$ ~/.datadog-agent/datadog.conf //agent config file
-$ ~/.datadog-agent/conf.d/ // config files for integrations
+$ /opt/datadog-agent/etc/datadog.conf //agent config file
+$ /opt/datadog-agent/etc/conf.d // directory of config files for integrations
 ```
 Necessary Installations
 * Python (Install via homebrew only!), pip, flask
@@ -55,14 +55,29 @@ Necessary Installations
 
 ## Collecting Metrics:
 * Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.  
-> I was able to successfully add tags on both the osx and linux hosts.  I had a bit of trouble figuring out how to edit text on Vagrant at first (I used vi) but eventually made it work.  There was a significant lag updating the UI from both hosts, but the VM took much longer.  I did a series of restarts for the agents and logged out/in a few times.  I'm not sure if those were necessary or if I just needed to be patient and I could anticipate a client being similarly confused.  I'm curious what the expected or recommended protocol is.  
-  UPDATE: DIRECTIONS FOR UPDATING TAGS.  INCLUDE NOTE THAT THERE IS A LAG AND A REFRESH HAPPENED.
-  
+> To add tags, I opened the config files (paths listed above) and un-commented the given code.  The syntax for adding tags was the same on both osx and ubuntu.  Here is what my updated file looked like for my osx host:
+```
+# Set the host's tags (optional)
+tags: mytag, env:prod, role:database, state:WA, city:Seattle, host_type:osx
+```
+> I restarted the agent and the tags were available in the UI.  Pictured below for both hosts.
+
   ![Tags Created Successfully](https://github.com/unclebconnor/hiring-engineers/blob/master/images/01_tag-example.png)
   
 * Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
-> I don't know why it wasn't obvious at first to rename the "example" file, but once I figured that out the installation was smooth on both hosts, though I'm still running into a sort of annoying issue with permissions on vagrant.  I'm sure I'll figure that out by the time I'm done.  
-  UPDATE:  CLARIFY TO RENAME THE EXAMPLE FILE AND WHAT TO CHANGE
+> I installed the integration for a PostgreSQL database that was already installed on my osx host.  I duplicated the postgres.yaml.example file and renamed it postgres.yaml.  Then I uncommented the following code:
+```
+init_config:
+
+instances:
+  - host: localhost
+    port: 5432
+    username: datadog
+    password: <my password>
+    tags:
+      - osx
+      - psql
+```
   
   ![Postgres Installed Successfully](https://github.com/unclebconnor/hiring-engineers/blob/master/images/02_Postgres-Install.png)
   
