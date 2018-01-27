@@ -1,16 +1,55 @@
 # Brian Connor's excellent adventure through the hiring exercise
 
 ## Notes on setup
-* I was able to install vagrant and the datadog agent with no trouble INCLUDE LINK TO VAGRANT RESOURCE AND RELEVANT COMMANDS
-* I confirmed that the agent was reporting by looking at the host map page INCLUDE LINK OR REFER TO IMAGE
-* I also installed an agent in my osx terminal, hoping that I'd get data from two hosts to compare, and because I'm less familiar with the linux vm.  My host map page has changed a few times and at one point I had 3 hexagons, 2 of which represented my macbook.  From this [help article](https://goo.gl/Zm5rY4) It seems that there are cases where a host might send multiple unique names, which Datadog then aliases separately.  The problem seems to have resolved itself (after a few rounds of uninstalling and reinstalling).  
-INCLUDE SOME COMMON PATHS AND COMMANDS FOR EACH HOST  
-* osx agent path
-* osx restart/info
-* linux agent path
-* linux restart/info
-* vi resources/commands
-  NECESSARY INSTALLATIONS...Flask, Python, Go, etc
+* Vagrant configured using the [Vagrant Download](https://www.vagrantup.com/downloads.html) and [given resource](https://www.vagrantup.com/intro/getting-started/) 
+```
+After Installing Vagrant Download
+$ vagrant init hashicorp/precise64 // installs virtualbox and vagrant VM
+$ vagrant up // run VM
+```
+* I also installed an agent in my osx terminal so I could get data from two hosts to compare.
+```
+$ DD_API_KEY=<MY_KEY> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/osx/install.sh)"
+$ /usr/local/bin/datadog-agent start // manually starts agent
+```
+* I confirmed that both agents were reporting by looking at the host map page
+* Strange behavior:  My host map page has changed a few times and at one point I had 3 hexagons, 2 of which represented my macbook.  From this [help article](https://goo.gl/Zm5rY4) It seems that there are cases where a host might send multiple unique names, which Datadog then aliases separately.  The problem seems to have resolved itself, though it's unclear whether this is a result of uninstalling and reinstalling or just time.  
+
+## Useful Commands for the given tasks
+Vagrant/Ubuntu Commands:
+```
+Vagrant
+$ vagrant up // run VM
+$ vagrant ssh // interact with vagrant from the command line
+$ exit // leave vagrant ssh mode
+$ vagrant destroy // terminates VM
+
+Agent Commands
+$ sudo /etc/init.d/datadog-agent <option> (options: start, stop, restart, status, info)
+
+Paths
+$ /etc/dd-agent/datadog.conf // agent config file
+$ /etc/dd-agent/conf.d/ //config files for integrations 
+
+Vi
+Arrow Keys to navigate
+i - insert mode
+:w! - Write to file (save)
+:q! - quit
+```
+OSX:
+```
+Agent Commands
+$ /usr/local/bin/datadog-agent <option> (options: start, stop, restart, status, info)
+
+Paths
+$ ~/.datadog-agent/datadog.conf //agent config file
+$ ~/.datadog-agent/conf.d/ // config files for integrations
+```
+Necessary Installations
+* Python (Install via homebrew only!), pip, flask
+* Go
+* Rails, bundle
 
 ---
 
