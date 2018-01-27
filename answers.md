@@ -113,7 +113,8 @@ init_config:
   
 * **Bonus Question** Can you change the collection interval without modifying the Python check file you created?
 > For my osx host, I changed this via the settings page for my_metric...   
-> ...which is a little hidden: host map -> name of db -> show dashboard -> settings(on chart) -> my_metric.  
+> ...which is a little hidden: host map -> name of db -> show dashboard -> settings(on chart) -> my_metric. 
+>  
 >  From what I can tell on the line graph, it's still only showing intervals every 20-30 seconds so I'm wondering if this field requires special statsd syntax.  I wasn't able to find any clear documentation with an answer to that so I'm going to move on for the moment.  
   
   ![Interval Updated Manually](https://github.com/unclebconnor/hiring-engineers/blob/master/images/05_Challenge-statsd-interval.png)
@@ -146,8 +147,10 @@ Once this is created, access the Dashboard from your Dashboard List in the UI:
 
 * Set the Timeboard's timeframe to the past 5 minutes
 * Take a snapshot of this graph and use the @ notation to send it to yourself.
-> I clicked and dragged on the graph to select a shorter time window.  I ended up setting the timeframe back to a 5 minute window earlier in the hour because there was nothing displaying in my rollup chart.  I assume this had something to do with there not being much data for the hour that I took the screenshot, despite the fact it should just be rolling up the average for the last hour.  I'm curious what values it's actually trying to calculate.  
-> I failed to add an annotation to the heatmap but was able to create one on the line chart    
+> I clicked and dragged on the graph to select a shorter time window.  I ended up setting the timeframe back to a 5 minute window earlier in the hour because there was nothing displaying in my rollup chart.  I assume this had something to do with there not being much data for the hour that I took the screenshot, despite the fact it should just be rolling up the average for the last hour.  I'm curious what values it's actually trying to calculate. 
+>  
+> I failed to add an annotation to the heatmap but was able to create one on the line chart 
+>  
 > I successfully added the annotations on that graph I got the automated email by tagging myself  
   
 Pictured:
@@ -182,8 +185,6 @@ Please configure the monitor’s message so that it will:
 * Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
 * When this monitor sends you an email notification, take a screenshot of the email that it sends you.
 > The image below shows one of the resulting emails  
-> *my host.name tag came up with a blank value because I set this monitor up for both of my hosts.  In a real scenario, I'd likely be creating this kind of monitor for each host separately so that tag would work.  In a summary monitor like this, it would make more sense to use a general message such as "the system needs your attention", etc.
-  UPDATE TO SHOW A SPECIFIC HOST
   
   ![Monitor Alert Email](https://github.com/unclebconnor/hiring-engineers/blob/master/images/09b_alert-email.png)
   
