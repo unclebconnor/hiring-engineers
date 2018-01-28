@@ -218,45 +218,22 @@ $ ddtrace-run python apm_setup.py
 $ chmod a+x ./trace-agent-osx 
 $ ./trace-agent-osx -ddconfig /opt/datadog-agent/etc/datadog.conf
 ```
->  I added the tracer to a recent rails project here:  [Body Map Project](https://github.com/unclebconnor/body_map)
->  UGH PG ISSUES AFTER INSTALLS...FIX TOMORROW
+>  I added the tracer to a recent rails project here  [Body Map Project](https://github.com/unclebconnor/body_map) by creating an initializer file and adding the following code:
+```
+# config/initializers/datadog-tracer.rb
+Datadog.configure do |c|
+  c.use :rails
+end
+``` 
+Running the agent, the tracer, and interacting with my app locally produced results in my terminal window as well as trace search window in the UI  
 
-  
+The following two images show:
+* The results of the traces in the Trace Search window
+* The dashboard created with the given flask app (from the original directions in the hiring task)
+
+  ![Trace Result](https://github.com/unclebconnor/hiring-engineers/blob/master/images/10c_trace-results.png)
   ![Dashboard](https://github.com/unclebconnor/hiring-engineers/blob/master/images/10a_dashboard.png)
   
-Please include your fully instrumented app in your submission, as well. 
-> I used the flask app that was given:
-
-```
-from flask import Flask
-import logging
-import sys
-
-# Have flask use stdout as the logger
-main_logger = logging.getLogger()
-main_logger.setLevel(logging.DEBUG)
-c = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-c.setFormatter(formatter)
-main_logger.addHandler(c)
-
-app = Flask(__name__)
-
-@app.route('/')
-def api_entry():
-    return 'Entrypoint to the Application'
-
-@app.route('/api/apm')
-def apm_endpoint():
-    return 'Getting APM Started'
-
-@app.route('/api/trace')
-def trace_endpoint():
-    return 'Posting Traces'
-
-if __name__ == '__main__':
-    app.run()
-```    
 
 * **Bonus Question**: What is the difference between a Service and a Resource?
 > A `service` refers to a feature set (to quote the manual) such as a web app or database.  `Resources` are queries within services, such as an API call (route) or SQL query.  So, for example, if I used a get route on my home page '/queryme' to access a database 5 times, I would be accessing 2 services (my app/home page and the database) via 10 resources (5x api calls and 5x database queries).
