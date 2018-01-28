@@ -205,11 +205,22 @@ Please configure the monitor’s message so that it will:
 Given the following Flask app (or any Python/Ruby/Go app of your choice) instrument this using Datadog’s APM solution:
 
 Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
-> I had a pretty tough time with this exercise, which had more to do with my environment(s) than the difficulty of the task.  In my linux environment, I played with a few different combinations of versions of pip and python, python-dev, etc. and caused some problems for myself a few times by not using sudo.  It turns out most of my issues were permissions, even though my error messages led me in circles for a bit.  I implemented the simple flask app that was given in the exercise, which only produced minimal data as seen in the screenshot below.  
-  UPDATE:  REVIEW THIS EXERCISE AND REWRITE AS DIRECTIONS
+> On my vagrant host, I implemented the simple flask app which I named **apm_setup.py** that was given in the exercise, which only produced minimal data as seen in the screenshot below.  
+>  
+> I ran the following commands
+```
+$ sudo pip install ddtrace
+$ ddtrace-run python apm_setup.py
+```
   
->I was also never able to get the Tracer Agent installed on my osx host.  I'm not sure if I didn't understand the syntax or if the directions were simply innacurate but that, I think, is the one piece missing from my ruby implementation.  I updated the github repo with that app to include the initializer.  [Body Map Project](https://github.com/unclebconnor/body_map)
-  UPDATE: REVIEW GO INSTALLATION AND RETRY
+> After downloading the osx tracer agent, I did not have permissions when trying to run the file and sudo did not grant the permissions I needed.  The following commands were required before it would run:
+```
+$ chmod a+x /trace-agent-osx-X.Y.Z 
+$ /trace-agent-osx-X.Y.Z -ddconfig /opt/datadog-agent/etc/datadog.conf
+```
+>  I added the tracer to a recent rails project here:  [Body Map Project](https://github.com/unclebconnor/body_map)
+>  UGH PG ISSUES AFTER INSTALLS...FIX TOMORROW
+
   
   ![Dashboard](https://github.com/unclebconnor/hiring-engineers/blob/master/images/10a_dashboard.png)
   
