@@ -215,8 +215,8 @@ $ ddtrace-run python apm_setup.py
   
 > After downloading the osx tracer agent, I did not have permissions when trying to run the file and sudo did not grant the permissions I needed.  The following commands were required before it would run:
 ```
-$ chmod a+x /trace-agent-osx-X.Y.Z 
-$ /trace-agent-osx-X.Y.Z -ddconfig /opt/datadog-agent/etc/datadog.conf
+$ chmod a+x ./trace-agent-osx 
+$ ./trace-agent-osx -ddconfig /opt/datadog-agent/etc/datadog.conf
 ```
 >  I added the tracer to a recent rails project here:  [Body Map Project](https://github.com/unclebconnor/body_map)
 >  UGH PG ISSUES AFTER INSTALLS...FIX TOMORROW
